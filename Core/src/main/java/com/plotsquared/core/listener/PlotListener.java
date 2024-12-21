@@ -87,6 +87,8 @@ public class PlotListener {
 
     private final EventDispatcher eventDispatcher;
 
+    private final boolean dataDrivenJukeboxes = PlotSquared.platform().serverVersion()[1] >= 21;
+
     public PlotListener(final @Nullable EventDispatcher eventDispatcher) {
         this.eventDispatcher = eventDispatcher;
     }
@@ -278,15 +280,22 @@ public class PlotListener {
                         Location location = player.getLocation();
                         Location lastLocation = musicMeta.get().orElse(null);
                         if (lastLocation != null) {
-                            plot.getCenter(center -> player.playMusic(center.add(0, Short.MAX_VALUE, 0), musicFlag));
-                            if (musicFlag == ItemTypes.AIR) {
-                                musicMeta.remove();
+                            if (dataDrivenJukeboxes) {
+                            } else {
+                                plot.getCenter(center -> player.playMusic(center.add(0, Short.MAX_VALUE, 0), musicFlag));
+                                if (musicFlag == ItemTypes.AIR) {
+                                    musicMeta.remove();
+                                }
                             }
                         }
                         if (musicFlag != ItemTypes.AIR) {
                             try {
-                                musicMeta.set(location);
-                                plot.getCenter(center -> player.playMusic(center.add(0, Short.MAX_VALUE, 0), musicFlag));
+                                if (dataDrivenJukeboxes) {
+
+                                } else {
+                                    musicMeta.set(location);
+                                    plot.getCenter(center -> player.playMusic(center.add(0, Short.MAX_VALUE, 0), musicFlag));
+                                }
                             } catch (Exception ignored) {
                             }
                         }

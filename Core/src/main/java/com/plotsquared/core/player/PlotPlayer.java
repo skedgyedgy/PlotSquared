@@ -581,6 +581,8 @@ public abstract class PlotPlayer<P> implements CommandCaller, OfflinePlotPlayer,
      */
     public abstract void playMusic(@NonNull Location location, @NonNull ItemType id);
 
+    public abstract void playMusic(@NonNull Location location, @NonNull String id);
+
     /**
      * Check if this player is banned.
      *

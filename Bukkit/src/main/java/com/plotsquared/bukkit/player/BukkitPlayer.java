@@ -52,6 +52,7 @@ import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.potion.PotionEffectType;
 import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.ApiStatus.Experimental;
 
 import java.util.Set;
 import java.util.UUID;
@@ -328,6 +329,12 @@ public class BukkitPlayer extends PlotPlayer<Player> {
         this.player.playSound(BukkitUtil.adapt(location), Sound.valueOf(BukkitAdapter.adapt(id).name()),
                 SoundCategory.MUSIC, Float.MAX_VALUE, 1f
         );
+    }
+
+    @Override
+    @Experimental
+    public void playMusic(final @NonNull Location location, final @NonNull String id) {
+        
     }
 
     @SuppressWarnings("deprecation") // Needed for Spigot compatibility

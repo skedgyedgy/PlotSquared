@@ -229,6 +229,10 @@ public class ConsolePlayer extends PlotPlayer<Actor> {
     }
 
     @Override
+    public void playMusic(@NonNull Location location, @NonNull String id) {
+    }
+
+    @Override
     public void kick(String message) {
     }
 
